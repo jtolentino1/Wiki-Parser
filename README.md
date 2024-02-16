@@ -17,3 +17,5 @@ python3 main.py -s <searchTerm> -o <outputTextFile>
 
 eg. python3 main.py -s entrepreneurship -o ent.txt
 ```
+
+tip: if more than one word, like Business administration, use underscore like: business_administration
