@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ### Usage
 
-``````
+```
 python3 main.py -s <searchTerm> -o <outputTextFile>
 
 eg. python3 main.py -s entrepreneurship -o ent.txt
