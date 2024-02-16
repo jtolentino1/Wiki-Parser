@@ -1,3 +1,4 @@
+import sys
 import requests
 
 def get_full_page(title):
@@ -18,13 +19,31 @@ def get_full_page(title):
             return page['extract']
     return "Content not found or unable to retrieve full content."
 
-# Example usage
-page_title = "Entrepreneurship"
-full_content = get_full_page(page_title)
-filename = f"{page_title}_Wikipedia_Page.txt"
+if __name__ == "__main__":
+    if len(sys.argv) != 5:
+        print("Usage: python3 main.py -s <searchTerm> -o <textFileName>")
+        sys.exit(1)
 
-# Save the content to a file
-with open(filename, "w", encoding="utf-8") as file:
-    file.write(full_content)
+    # Initialize variables
+    search_term = ""
+    text_file_name = ""
 
-print(f"Full page content saved to {filename}")
+    # Parse command line arguments
+    for i in range(1, len(sys.argv)-1):
+        if sys.argv[i] == "-s":
+            search_term = sys.argv[i+1]
+        elif sys.argv[i] == "-o":
+            text_file_name = sys.argv[i+1]
+
+    if search_term == "" or text_file_name == "":
+        print("Missing required arguments. Usage: python3 main.py -s <searchTerm> -o <textFileName>")
+        sys.exit(1)
+
+    # Retrieve the full page content based on the search term
+    full_content = get_full_page(search_term)
+
+    # Save the content to the specified file
+    with open(text_file_name, "w", encoding="utf-8") as file:
+        file.write(full_content)
+
+    print(f"Full page content saved to {text_file_name}")
